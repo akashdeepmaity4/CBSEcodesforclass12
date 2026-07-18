@@ -17,15 +17,15 @@ for row in rows:
 
 #WAP to create employee database using mysql and input 5 employees' details
 import mysql.connector as m
-mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
-cursor = mym.cursor()
+myM = m.connect(host="localhost",user="root",passwd="root",database="employee")
+cursor = myM.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS employee(id INT NOT NULL AUTO_INCREMENT,name VARCHAR(50),salary INT,PRIMARY KEY(id))")
 for i in range(5):
     name = input("Enter name of employee: ")
     salary = int(input("Enter salary of employee: "))
     cursor.execute("INSERT INTO employee(name,salary) VALUES(%s,%s)",(name,salary))
-mym.commit()
-mym.close()
+myM.commit()
+myM.close()
 
 #WAP to display the details of all employees using curcor
 import mysql.connector as m
