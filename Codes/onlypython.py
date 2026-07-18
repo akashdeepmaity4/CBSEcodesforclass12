@@ -8,7 +8,6 @@ print("the smallest number is",min(L))
 
 #WAP using functions to find factorials and check prime number
 import math
-
 def get_factorial(n):
     if n < 0:
         return "Undefined for negative numbers"
@@ -51,54 +50,48 @@ for i in range(n):
     L.append(x)
 for i in L:
     if(i%2 == 0):
-        print(i,"is an even number. moving to the next number...")
+        print(i,"is an even number")
         a.append(i)
     else:
-        print(i,"is not an even number.moving to the next number...")
+        print(i,"is not an even number")
         print("all even numbers are",a)
-        #WAP to count lines and words in a text file 
-
-print("Enter/Paste your test (Press Enter on an empty line to finish):")
-lines_list = []
-while True:
-    line = input()
-    if line == "":  
-        return "enter something"
-    lines_list.append(line)
-line_count = len(lines_list)
-word_count = 0
-for line in lines_list:
-    words_in_line = line.split() 
-    word_count += len(words_in_line)
-print("\n--- Results ---")
-print("Total number of lines:", line_count)
-print("Total number of words:", word_count)
+        
+#WAP to count words in a text file
+'''add .txt file support using os module...'''
+source = str(input("Enter the source text"))
+tokens = source.split()
+num_words = len(tokens)
+print(f"the number of words in your source text is {num_words}")
 
 #WAP to print pyramid pattern using asterisks
-for i in range(1,10):
+n = int(input("enter the bottoms rows' number"))
+for i in range(1,n+1):
     for j in range(1,i+1):
         print("*",end="")
     print()
 
 #WAP to print Fibonacci series till n
+'''This bit is not working,fix...'''
+
+'''n = int(input("Enter till which number you want to print fibonacci series"))
 def fib(n):
-    if n == 1 or n == 2:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
-n = int(input("Enter a number: "))
-print(fib(n))
+    a, b = 0, 1
+    for i in range(n):
+        print(a, end=" ")
+        a, b = b, a + b
+    print()'''
 
 #WAP to print binary numbers
-num = int(input("Enter a number: "))
+num = int(input("Enter a number to print binary numbers: "))
 while num > 0:
     num = num >> 1
     print(num%2,end=" ")
 print()
 
 #WAP to print an inverted triangle using asterisks
-for i in range(1,10):
-    for j in range(i,10):
+n = int(input("enter the bottoms rows' number"))
+for i in range(1,n+1):
+    for j in range(i,n+1):
         print("*",end="")
     print()
 
@@ -113,12 +106,12 @@ else:
 books = []
 books_final = []
 n = int(input("Enter the number of books: "))
-for i in range(1,n+1):
-    names = input("Enter the name of the book: ")
-    if names.isinstance(str):
+for i in range(n):
+    names = input("Enter the name of the book")
+    if names.isalpha():
         books.append(names)
     else:
-        return "enter a valid string"
+        print("enter a valid string")
 
 for i in books:
     if i[0] in "aeiouAEIOU":
@@ -137,16 +130,23 @@ for i in text:
         count += 1
 print(f"The word {word} occurs {count} times in the string")
 
-# there is a program that accepts a list of numbers and a numeric value by which all the elements of the list are shifted to left
-L = []
-n = int(input("enter number of numbers you will input"))
-for i in range(n):
-    x = int(input("enter a number"))
-    L.append(x)
-shift = int(input("enter a number"))
-for i in L:
-    i = i << shift
-    print(i)
+# WAP that accepts a list of numbers and a numeric value by which all the elements of the list are shifted to left
+# WAP that accepts a list of numbers and a numeric value by which all the elements of the list are shifted to left
+def left_shift(arr, n):
+    if not arr:
+        return arr
+    
+    n = n % len(arr)
+    
+    return arr[n:] + arr[:n]
+user_input = input("Enter numbers separated by spaces: ")
+numbers = [int(x) for x in user_input.split()]
+
+shift_by = int(input("Enter the number of positions to shift left: "))
+
+result = left_shift(numbers, shift_by)
+print(f"\nOriginal list: {numbers}")
+print(f"Left-shifted list: {result}")
 
 # Write a Python program to calculate the length of the string entered by the user and print the result
 string = input("Enter a string: ")
@@ -159,7 +159,7 @@ n = int(input("enter number of numbers you will input"))
 for i in range(n):
     x = int(input("enter a number"))
     L.append(x)
-print("all numbers in the list are",sum(L))
+print("the sum of all numbers in the list are",sum(L))
 
 # Write a program to demonstrate string slicing
 string = input("Enter a string: ")
@@ -167,7 +167,7 @@ print(string[0:5])
 print(string[5:10])
 print(string[10:15])
 
-# #Write a program to create anddisplay tuple
+# #Write a program to create and display tuple
 tuple = ("apple","banana","cherry")
 print(tuple)
 
@@ -189,65 +189,8 @@ print(sorted_tuple)
 # Write a program to create and display a dictionary
 dict = {"name":"John","age":25,"city":"New York"}
 print(dict)
+
 # Write a program to update elements in a dictionary
 dict = {"name":"John","age":25,"city":"New York"}
 updated_dict = dict.update({"age":26})
 print(updated_dict)
-"""delete from here """
-#WAP to creaate database wuh python and mysql
-import mysql.connector as m
-mym = m.connect(host="localhost",user="root",passwd="root",database="python")
-cursor = mym.cursor()
-cursor.execute("CREATE TABLE IF NOT EXISTS students(id INT NOT NULL AUTO_INCREMENT,name VARCHAR(50),age INT,PRIMARY KEY(id))")
-cursor.execute("INSERT INTO students(name,age) VALUES('John',25)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Tom',30)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Peter',35)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Sarah',40)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Michael',45)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Jenny',50)")
-mym.commit()
-mym.close()
-rows = cursor.fetchall()
-for row in rows:
-    print(row)
-
-#WAP to create employee database using mysql and input 5 employees' details
-import mysql.connector as m
-mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
-cursor = mym.cursor()
-cursor.execute("CREATE TABLE IF NOT EXISTS employee(id INT NOT NULL AUTO_INCREMENT,name VARCHAR(50),salary INT,PRIMARY KEY(id))")
-for i in range(5):
-    name = input("Enter name of employee: ")
-    salary = int(input("Enter salary of employee: "))
-    cursor.execute("INSERT INTO employee(name,salary) VALUES(%s,%s)",(name,salary))
-mym.commit()
-mym.close()
-
-#WAP to display the details of all employees using curcor
-import mysql.connector as m
-mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
-cursor = mym.cursor()
-cursor.execute("SELECT * FROM employee")
-rows = cursor.fetchall()
-for row in rows:
-    print(row)
-
-#WAP to search employee using employee id entered by the user
-import mysql.connector as m
-mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
-cursor = mym.cursor()
-id = int(input("Enter employee id: "))
-cursor.execute("SELECT * FROM employee WHERE id=%s",(id))
-rows = cursor.fetchall()
-for row in rows:
-    print(row)
-
-#WAP to update employee salary using employee id entered by the user
-import mysql.connector as m
-mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
-cursor = mym.cursor()
-id = int(input("Enter employee id: "))
-salary = int(input("Enter new salary: "))
-cursor.execute("UPDATE employee SET salary=%s WHERE id=%s",(salary,id))
-mym.commit()
-mym.close()

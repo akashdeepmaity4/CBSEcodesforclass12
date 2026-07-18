@@ -6,14 +6,13 @@ cursor.execute("CREATE TABLE IF NOT EXISTS students(id INT NOT NULL AUTO_INCREME
 cursor.execute("INSERT INTO students(name,age) VALUES('John',25)")
 cursor.execute("INSERT INTO students(name,age) VALUES('Tom',30)")
 cursor.execute("INSERT INTO students(name,age) VALUES('Peter',35)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Sarah',40)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Michael',45)")
-cursor.execute("INSERT INTO students(name,age) VALUES('Jenny',50)")
 mym.commit()
-mym.close()
+cursor.execute("select * from students")
 rows = cursor.fetchall()
 for row in rows:
     print(row)
+mym.close()
+
 
 #WAP to create employee database using mysql and input 5 employees' details
 import mysql.connector as m
@@ -23,7 +22,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS employee(id INT NOT NULL AUTO_INCREME
 for i in range(5):
     name = input("Enter name of employee: ")
     salary = int(input("Enter salary of employee: "))
-    cursor.execute("INSERT INTO employee(name,salary) VALUES(%s,%s)",(name,salary))
+    cursor.execute("INSERT INTO employee(name,salary) VALUES(%s,%s)",(name,salary,))
 myM.commit()
 myM.close()
 
@@ -41,7 +40,7 @@ import mysql.connector as m
 mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
 cursor = mym.cursor()
 id = int(input("Enter employee id: "))
-cursor.execute("SELECT * FROM employee WHERE id=%s",(id))
+cursor.execute("SELECT * FROM employee WHERE id=%s",(id,))
 rows = cursor.fetchall()
 for row in rows:
     print(row)
