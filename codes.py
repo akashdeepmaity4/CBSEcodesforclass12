@@ -128,5 +128,126 @@ for i in books:
 
 print(f"The books which name start with consonant are: {books_final}")
 
-#WAP to 
+#WAP that prints the count of occurrences of searched word ""SCARCE" in the string
+text = input("Enter a string: ")
+word = input("Enter a word: ")
+count = 0
+for i in text:
+    if i == word:
+        count += 1
+print(f"The word {word} occurs {count} times in the string")
 
+# there is a program that accepts a list of numbers and a numeric value by which all the elements of the list are shifted to left
+L = []
+n = int(input("enter number of numbers you will input"))
+for i in range(n):
+    x = int(input("enter a number"))
+    L.append(x)
+shift = int(input("enter a number"))
+for i in L:
+    i = i << shift
+    print(i)
+
+# Write a Python program to calculate the length of the string entered by the user and print the result
+string = input("Enter a string: ")
+length = len(string)
+print(f"The length of the string is {length}")
+
+#WAP to display some of all items in a list
+L = []
+n = int(input("enter number of numbers you will input"))
+for i in range(n):
+    x = int(input("enter a number"))
+    L.append(x)
+print("all numbers in the list are",sum(L))
+
+# Write a program to demonstrate string slicing
+string = input("Enter a string: ")
+print(string[0:5])
+print(string[5:10])
+print(string[10:15])
+
+# #Write a program to create anddisplay tuple
+tuple = ("apple","banana","cherry")
+print(tuple)
+
+# Write a program to perform tuple slicing
+tuple = ("apple","banana","cherry")
+print(tuple[0:2])
+print(tuple[1:3])
+
+# Write a program to find the maximum value in a tuple
+tuple = ("apple","banana","cherry")
+max_value = max(tuple)
+print(max_value)
+
+# Write a program to sort elements of a tuple
+tuple = ("apple","banana","cherry")
+sorted_tuple = sorted(tuple)
+print(sorted_tuple)
+
+# Write a program to create and display a dictionary
+dict = {"name":"John","age":25,"city":"New York"}
+print(dict)
+# Write a program to update elements in a dictionary
+dict = {"name":"John","age":25,"city":"New York"}
+updated_dict = dict.update({"age":26})
+print(updated_dict)
+"""delete from here """
+#WAP to creaate database wuh python and mysql
+import mysql.connector as m
+mym = m.connect(host="localhost",user="root",passwd="root",database="python")
+cursor = mym.cursor()
+cursor.execute("CREATE TABLE IF NOT EXISTS students(id INT NOT NULL AUTO_INCREMENT,name VARCHAR(50),age INT,PRIMARY KEY(id))")
+cursor.execute("INSERT INTO students(name,age) VALUES('John',25)")
+cursor.execute("INSERT INTO students(name,age) VALUES('Tom',30)")
+cursor.execute("INSERT INTO students(name,age) VALUES('Peter',35)")
+cursor.execute("INSERT INTO students(name,age) VALUES('Sarah',40)")
+cursor.execute("INSERT INTO students(name,age) VALUES('Michael',45)")
+cursor.execute("INSERT INTO students(name,age) VALUES('Jenny',50)")
+mym.commit()
+mym.close()
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+#WAP to create employee database using mysql and input 5 employees' details
+import mysql.connector as m
+mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
+cursor = mym.cursor()
+cursor.execute("CREATE TABLE IF NOT EXISTS employee(id INT NOT NULL AUTO_INCREMENT,name VARCHAR(50),salary INT,PRIMARY KEY(id))")
+for i in range(5):
+    name = input("Enter name of employee: ")
+    salary = int(input("Enter salary of employee: "))
+    cursor.execute("INSERT INTO employee(name,salary) VALUES(%s,%s)",(name,salary))
+mym.commit()
+mym.close()
+
+#WAP to display the details of all employees using curcor
+import mysql.connector as m
+mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
+cursor = mym.cursor()
+cursor.execute("SELECT * FROM employee")
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+#WAP to search employee using employee id entered by the user
+import mysql.connector as m
+mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
+cursor = mym.cursor()
+id = int(input("Enter employee id: "))
+cursor.execute("SELECT * FROM employee WHERE id=%s",(id))
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+#WAP to update employee salary using employee id entered by the user
+import mysql.connector as m
+mym = m.connect(host="localhost",user="root",passwd="root",database="employee")
+cursor = mym.cursor()
+id = int(input("Enter employee id: "))
+salary = int(input("Enter new salary: "))
+cursor.execute("UPDATE employee SET salary=%s WHERE id=%s",(salary,id))
+mym.commit()
+mym.close()
