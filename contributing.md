@@ -27,7 +27,7 @@ Please follow these steps to maintain a clean git history:
 2. **Clone Your Fork:** Download the repository to your local machine
 
    ```bash
-   git clone https://github.com
+   git clone "repository link"
    ```
 3. **Create a Branch:** Create a separate branch with a descriptive name for your changes
 
