@@ -73,14 +73,27 @@ for i in range(1,n+1):
 #WAP to print Fibonacci series till n
 '''This bit is not working,fix...'''
 
-'''n = int(input("Enter till which number you want to print fibonacci series"))
-def fib(n):
-    a, b = 0, 1
-    for i in range(n):
-        print(a, end=" ")
-        a, b = b, a + b
-    print()'''
+total = 1
+n = int(input("Enter till which number you want to print fibonacci series"))
+count = 1
+nums = []
+for i in range(n):
+    nums.append(Count)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''under construction'''
 #WAP to print binary numbers
 num = int(input("Enter a number to print binary numbers: "))
 while num > 0:
@@ -130,7 +143,6 @@ for i in text:
         count += 1
 print(f"The word {word} occurs {count} times in the string")
 
-# WAP that accepts a list of numbers and a numeric value by which all the elements of the list are shifted to left
 # WAP that accepts a list of numbers and a numeric value by which all the elements of the list are shifted to left
 def left_shift(arr, n):
     if not arr:
